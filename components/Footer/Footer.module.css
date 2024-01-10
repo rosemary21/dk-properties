@@ -1,0 +1,233 @@
+.footer {
+  width: 100%;
+  height: fit-content;
+  background: #f8fafc;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+.footerTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.footerCol_1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.footerCol_1 img {
+  width: 82px;
+}
+
+.footerCol_1 span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #71717a;
+}
+
+.footerCol_2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.footerCol_2 h4 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.footerCol_2 a {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #090914;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.footerCol_2 a:hover {
+  color: #e80e0f;
+}
+
+.footerCol_2 a.red {
+  color: #e80e0f;
+}
+
+.footerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.footerForm input[type="email"] {
+  width: 300px;
+  height: 55px;
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 10px;
+  padding-left: 16px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: black;
+  transition: 400ms;
+}
+
+.footerForm input[type="email"]:focus {
+  border: 1px solid #2d2d4d;
+  bottom: 0;
+  outline: 0;
+}
+
+.footerForm button {
+  width: 300px;
+  height: 55px;
+  background: #e80e0f;
+  border-radius: 9px;
+  outline: none;
+  border: none;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  color: #090914;
+}
+
+/* MEDIA QUERY FOR LARGE DEVICES */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .footerTop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .footerCol_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footerCol_1 span {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #71717a;
+    text-align: center;
+    width: fit-content;
+  }
+
+  .footerCol_2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+/* MEDIA QUERY FOR MEDIUM DEVICES */
+@media only screen and (min-width: 577px) and (max-width: 991px) {
+  .footerTop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .footerCol_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footerCol_1 span {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #71717a;
+    text-align: center;
+    width: fit-content;
+  }
+
+  .footerCol_2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+/* MEDIA QUERY FOR SMALL DEVICES */
+@media only screen and (min-width: 0px) and (max-width: 576px) {
+  .footerTop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .footerCol_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footerCol_1 span {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #71717a;
+    text-align: center;
+    width: fit-content;
+  }
+
+  .footerCol_2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}

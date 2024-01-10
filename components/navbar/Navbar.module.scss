@@ -1,0 +1,39 @@
+.header {
+  height: 56px;
+  background-color: #fff;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.inner {
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  display: block;
+  line-height: 1;
+  padding: 8px 12px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--black);
+  font-size: 14px;
+  font-weight: 500;
+  transition: 500ms;
+
+  &:hover {
+    color: var(--mantine-color-red-filled-hover);
+  }
+
+  [data-mantine-color-scheme] &[data-active] {
+    background-color: var(--mantine-color-red-filled);
+    color: var(--mantine-color-white);
+  }
+}

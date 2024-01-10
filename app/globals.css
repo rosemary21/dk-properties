@@ -1,27 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: content-box;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primary: "#E80E0F";
+  --white: "white";
+  --black: "black";
+  --ArchivoFont: "Archivo", sans-serif;
+  --Poppinsfont: "Poppins", sans-serif;
+  --padding: "80px 0px";
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  scroll-padding: 70px 0;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  overflow-x: hidden !important;
+}
+
+button:disabled {
+  background-color: gray !important;
+  color: white;
+  cursor: not-allowed !important;
+}
+
+.m-64f58e10 {
+  align-items: center;
+  background-color: #e80e0f !important;
+  border: calc(0.0625rem * var(--mantine-scale)) solid #e80e0f !important;
+  border-radius: var(--carousel-control-size);
+  box-shadow: var(--mantine-shadow-md);
+  color: #ffffff !important;
+  display: flex;
+  justify-content: center;
+  min-height: var(--carousel-control-size);
+  min-width: var(--carousel-control-size);
+  opacity: var(--_control-opacity);
+  pointer-events: all;
+  transition: opacity 0.1s ease;
+  width: 40px;
+  height: 40px;
+}
+
+.breadCrumBlack {
+  color: black !important;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.breadCrumGray {
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #888 !important;
+}
+
+.m-539e827b[data-active] {
+  --__tab-border-color: #e80e0f !important;
+}
+
+.m-539e827b {
+  --__tab-border-color: transparent;
+  --_tab-bg: transparent;
+  background-color: var(--_tab-bg);
+  border-color: var(--__tab-border-color);
+  border-radius: var(--_tab-radius);
+  border-style: solid;
+  border-width: var(--_tab-border-width);
 }

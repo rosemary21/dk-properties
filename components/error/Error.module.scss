@@ -1,0 +1,47 @@
+.root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-weight: 900;
+  font-size: 34px;
+  margin-bottom: var(--mantine-spacing-md);
+  font-family: var(--Poppinsfont);
+
+  @media (max-width: 768px) {
+    font-size: 25px;
+  }
+}
+
+.message {
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom: var(--mantine-spacing-md);
+  font-family: var(--Poppinsfont);
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.control {
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.mobileImage {
+  @media (min-width: 48em) {
+    display: none;
+  }
+}
+
+.desktopImage {
+  @media (max-width: 47.99em) {
+    display: none;
+  }
+}

@@ -1,0 +1,49 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  background-color: white;
+  padding: 2rem 3rem;
+}
+
+.container h2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  color: black;
+  text-align: center;
+}
+
+.container .icon {
+  font-size: 35px;
+  color: #e80e0f;
+}
+
+/* .container button {
+  width: min(307px, 70%);
+  height: 40px;
+  background-color: #e80e0f;
+  border: 0;
+  outline: 0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  margin-top: 1rem;
+} */
+
+.container p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  color: black;
+}
+
+.container p {
+  font-weight: 600;
+}

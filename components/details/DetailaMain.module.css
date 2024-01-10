@@ -1,0 +1,81 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  padding: 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom right, #ffffff, #d4e7fe);
+  overflow: hidden;
+  position: relative;
+}
+
+.main {
+  width: 100%;
+  height: 60%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 2rem;
+}
+
+.title {
+  color: #18181b;
+  font-weight: 700;
+  font-size: 30px;
+  margin-top: 1.5rem;
+  text-transform: capitalize;
+}
+
+.description {
+  color: #3f3f46;
+  font-size: 15px;
+  margin: 2rem 0;
+}
+
+.descriptionAmount {
+  width: 100%;
+  background: #fafafb;
+  padding: 13px 20px;
+  text-align: left;
+  font-size: 19px;
+  font-weight: 700;
+  color: #18181b;
+  border-radius: 15px;
+}
+
+.payBtn {
+  color: white;
+  background-color: #e80e0f;
+  transition: 500ms;
+}
+
+.payBtn:hover {
+  color: #e80e0f;
+  background-color: #000;
+}
+
+.contactUsBtn {
+  color: black;
+  background-color: #fff;
+  transition: 500ms;
+}
+
+.contactUsBtn:hover {
+  color: #fff;
+  background-color: #18181b;
+}
+
+@media only screen and (max-width: 576px) {
+  .container {
+    height: fit-content;
+    padding: 5rem 20px;
+  }
+
+  .main {
+    width: 100%;
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}

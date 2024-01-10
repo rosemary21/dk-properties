@@ -1,0 +1,51 @@
+.aboutCard {
+  width: min(343px, 100%);
+  height: 302px;
+  background: white;
+  border: 1px solid #2222227e;
+  padding: min(20px, 16px);
+}
+
+.aboutCardIndex {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.01em;
+  color: #101828;
+}
+
+.aboutCardDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.aboutCardImage {
+  width: 77px;
+  height: 77px;
+  overflow: hidden;
+  position: relative;
+}
+
+.aboutCard h4 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+}
+
+.aboutCard p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 576px) {
+  .aboutCard {
+    width: 100%;
+    height: fit-content;
+  }
+}
