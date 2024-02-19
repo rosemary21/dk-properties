@@ -11,11 +11,14 @@ import PropertyType from "@/utils/PropertyType";
 import { useRouter } from "next/navigation";
 import formatCurrency from "@/utils/FormatCurrency";
 import { Table } from "@mantine/core";
+import TransactionService from "@/services/Transaction";
 
 export default function DetailsMain() {
   const autoplay = useRef(Autoplay({ delay: 7000 }));
   const [property, setProperty] = useState({} as PropertyResponseProps);
   const [propertyLink, setPropertyLink] = useState<string[]>([]);
+  const [pdfLink, setPdfLink] = useState<string>("");
+  const { checkout } = TransactionService();
 
   const router = useRouter();
 
@@ -63,6 +66,13 @@ export default function DetailsMain() {
     const property = JSON.parse(localData) as PropertyResponseProps;
     setProperty(property);
   }, []);
+
+  const landDocLink = () => {
+    if (typeof property?.landDoc !== null && property?.landDoc) {
+      return property?.landDoc[0].imageUrl;
+    }
+    return "";
+  };
 
   return (
     <div className={classes.container}>
@@ -146,15 +156,14 @@ export default function DetailsMain() {
           <div className={classes.descriptionAmount}>
             {formatCurrency(property.currency, property.amount)}
           </div>
-
+        
           <div className="flex items-center mt-5 gap-6">
-            <Button
-              className={classes.payBtn}
-              size="lg"
-              onClick={() => router.push("/checkout")}
-            >
-              Checkout
-            </Button>
+            <a href={landDocLink()} target="_blank" download={true}>
+              <Button className={classes.payBtn} size="lg">
+                Continue
+              </Button>
+            </a>
+
             <Button
               className={classes.contactUsBtn}
               size="lg"

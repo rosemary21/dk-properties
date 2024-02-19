@@ -4,7 +4,7 @@ const aboutData = [
     icon: "/about-1.png",
     title: "Transparency",
     description:
-      "Refine and improve user experiences and boost revenue by rapidly testing and validating what drives your customers to purchase and share.",
+      "We provide honest and accurate information about every property we list, so you can make informed decisions.",
     animation: {
       card: "flip-right",
       index: "fade-down-right",
@@ -15,7 +15,7 @@ const aboutData = [
     icon: "/about-2.png",
     title: "Accountability",
     description:
-      "Once integrated, we make it easy to connect Friendbuy into data warehouse, business intelligence, and subscription billing platforms.",
+      "We are committed to delivering the best service to our clients, from the initial consultation to the final closing.",
     animation: {
       card: "flip-down",
       index: "fade-down",
@@ -26,7 +26,7 @@ const aboutData = [
     icon: "/about-3.png",
     title: "Efficiency",
     description:
-      "Ensure customer happiness and satisfaction with purpose-built features that give quick visibility into referral activity and offer flexibility in managing conversions.",
+      "We use the latest technology and tools to streamline the process of finding and securing your ideal property.",
     animation: {
       card: "flip-left",
       index: "fade-down-left",

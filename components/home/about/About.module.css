@@ -22,7 +22,8 @@
 .title {
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  /* font-size: 40px; */
+  font-size: 35px;
   color: #000000;
   flex-basis: 30%;
 }
@@ -31,8 +32,10 @@
   flex-basis: 65%;
   font-style: normal;
   font-weight: 300;
-  font-size: 15px;
-  color: #00003f;
+  /* font-size: 15px; */
+  font-size: 19px;
+  /* color: #00003f; */
+  color: #000;
 }
 
 .overlayLeft {

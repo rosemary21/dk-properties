@@ -25,6 +25,31 @@
   flex-direction: column;
 }
 
+.btn_primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 35px;
+  background: #e80e0f;
+  text-align: center;
+  border: none;
+  outline: none;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #ffffff;
+  overflow: hidden;
+  transition: 400ms;
+  border-radius: 5px;
+}
+
+.btn_primary:hover {
+  background-color: rgba(215, 52, 52, 0.219);
+  color: #e80e0f;
+}
+
 @media only screen and (max-width: 576px) {
   .container {
     padding: 0 20px;

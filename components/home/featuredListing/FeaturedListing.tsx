@@ -13,23 +13,23 @@ export default function FeaturedListing() {
         <div className={classes.service_imgs}>
           <Image
             className={classes.service_pic_1}
-            src="/service-upper.png"
+            src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="service-pic-1"
-          />
-          <Image
-            className={classes.service_pic_2}
-            src="/service-lower.png"
-            alt="service-pic-2"
           />
         </div>
 
         <div className={classes.service_table}>
           <h2 data-aos="fade-up">
-            The and collecting for the motionless difficulty son.
+            Book an Inspection Today and Find Your Dream Property
           </h2>
           <p data-aos="fade-up">
-            Conveying or northward offending admitting perfectly my. Colonel
-            gravity get thought fat smiling add but difficult situations.
+            If you are interested in any of our properties, you can book an
+            inspection online and visit them in person. You can also contact us
+            by phone or email and we will arrange a convenient time for you. Our
+            agents will guide you through the features and benefits of each
+            property and answer any questions you may have. Don’t miss this
+            opportunity to find your dream property in Lagos. Book an inspection
+            today and get ready to move in.
           </p>
 
           <Table
@@ -70,9 +70,9 @@ export default function FeaturedListing() {
           </Table>
 
           <Link href="/contact" className="mx-auto">
-            <Button color="#E80E0F" size="lg" data-aos="fade-up">
+            <button className={classes.btn_primary} data-aos="fade-up">
               YES! I WANT BOOK “OFFICE PACKAGE”
-            </Button>
+            </button>
           </Link>
         </div>
       </div>

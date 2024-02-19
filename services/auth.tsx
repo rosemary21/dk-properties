@@ -1,6 +1,12 @@
 "use client";
 
-import { dker, getToken, userEmail, userToken } from "@/utils/Links";
+import {
+  dker,
+  getToken,
+  getUserName,
+  userEmail,
+  userToken,
+} from "@/utils/Links";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
@@ -55,7 +61,8 @@ export default function AuthService() {
       setIsLoading(false);
       Cookies.set(userToken, data.token);
       Cookies.set(userEmail, data.emailAddress);
-      router.back();
+      const user = getUserName();
+      router.push(`/profile/${user}`);
     } catch (error: any) {
       setIsLoading(false);
       setError(error.message);

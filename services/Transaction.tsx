@@ -1,6 +1,7 @@
 import { AllTransactionsProps, UploadTransactionResponseProps } from "@/types";
-import { dker, getToken } from "@/utils/Links";
+import { dker, getToken, getUserName } from "@/utils/Links";
 import openNotification from "@/utils/openNotification";
+import { useRouter } from "next/navigation";
 import {
   Dispatch,
   FormEvent,
@@ -34,6 +35,8 @@ export default function TransactionService() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const apiKey = getToken();
+  const userName = getUserName();
+  const router = useRouter();
 
   const handleUploadTransaction = async ({
     e,
@@ -114,10 +117,25 @@ export default function TransactionService() {
     }
   };
 
+  const checkout = async (
+    prodCode: string,
+    setPdfLink: Dispatch<SetStateAction<string>>
+  ) => {
+    if (!apiKey) {
+      router.push("/login");
+    }
+    try {
+      setPdfLink(prodCode)
+    } catch (error) {
+      return error;
+    }
+  };
+
   return {
     isLoading,
     errorMessage,
     handleUploadTransaction,
     getUserTransactions,
+    checkout,
   };
 }

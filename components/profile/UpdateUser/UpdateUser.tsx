@@ -175,6 +175,7 @@ export default function UpdateUser() {
           value={values.userName}
           className="mt-[1rem]"
           radius={5}
+          readOnly
         />
         {errors.userName && touched.userName && (
           <div style={errorStyle} className="mt-2">

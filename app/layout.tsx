@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const {logOutUser} = AuthService()
+  const { logOutUser } = AuthService();
 
   const timeOut = async () => {
     await logOutUser();
@@ -80,7 +80,9 @@ export default function RootLayout({
   }, []);
 
   useEffect(() => {
-    AOS.init();
+    AOS.init({
+      once: true,
+    });
   });
 
   const queryClient = new QueryClient();
@@ -92,7 +94,10 @@ export default function RootLayout({
         <title>Dkerulative Properties</title>
 
         {/* Box icons cdn */}
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
+        <link
+          href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+          rel="stylesheet"
+        ></link>
 
         {/* AOS */}
         <link

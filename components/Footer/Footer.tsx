@@ -55,8 +55,8 @@ export default function Footer() {
               loading="lazy"
             />
             <span>
-              Clarity gives you the blocks and components you <br />
-              need to create a truly professional website.
+              We offers online derivative tools and advice by
+              <br /> true professionals needed get the best out of real estate.
             </span>
           </div>
 

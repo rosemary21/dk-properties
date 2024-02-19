@@ -15,8 +15,10 @@ export default function About() {
           data-aos="zoom-in-up"
           data-aos-duration="800"
         >
-          Your Dream <span className="text-primary">Property</span> Now Within
-          Reach
+          {/* Your Dream <span className="text-primary">Property</span> Now Within
+          Reach */}
+          Your Reach Get the Best Deals in Nigerian with Our Exclusive Offers in{" "}
+          <span className="text-primary">D&apos;kerulative</span>
         </p>
         <div
           className={classes.description}
@@ -25,10 +27,15 @@ export default function About() {
         >
           <FaQuoteLeft />
           <p>
-            The top property center platform in Nigeria is D&apos;kulerative. We
+            {/* The top property center platform in Nigeria is D&apos;kulerative. We
             offer people the greatest property search experience both online and
             offline with a web-based platform for property sales by linking them
-            with reliable and verified real estate agents.
+            with reliable and verified real estate agents. */}
+            We have access to some of the most attractive and affordable
+            properties in Lagos, thanks to our strong network of partners and
+            contacts. Whether you are looking for a luxury villa, a cozy
+            apartment, or a spacious office, we have something for you. Contact
+            us today and get the best deals on Lagos homes.
           </p>
           <FaQuoteRight />
         </div>

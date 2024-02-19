@@ -58,9 +58,8 @@ export default function PropertyBody({ propertyType }: Props) {
         </>
       )}
       <Pagination
-        total={pageSize}
+        total={Math.ceil(pageNumber / pageSize)}
         color="red"
-        withEdges
         value={pageNumber}
         onChange={setPageNumber}
         siblings={1}

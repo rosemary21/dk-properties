@@ -81,8 +81,7 @@ export default function SignIn() {
 
         <Button
           type="submit"
-          color="#E80E0F"
-          className="w-full mt-8"
+          className={`w-full mt-8 ${classes.btn_primary}`}
           size="lg"
           disabled={isSubmitting}
           data-aos="fade-right"

@@ -34,7 +34,7 @@ export default function HomeMain() {
           data-aos-duration="800"
           data-aos-delay="300"
         >
-          Property Acquisition made seamless
+          Find Your Dream Property in Nigeria
         </p>
         <p
           className={classes.description}
@@ -42,10 +42,12 @@ export default function HomeMain() {
           data-aos-duration="800"
           data-aos-delay="500"
         >
-          D&apos;kerulative Properties simplifies property acquisition with a
+          {/* D&apos;kerulative Properties simplifies property acquisition with a
           seamless application. Discover a user-friendly platform for
           hassle-free real estate transactions, making your property journey
-          effortless and efficient.
+          effortless and efficient. */}
+          We are the leading real estate agency in Lagos, offering a wide range
+          of properties for sale, rent and lease.
         </p>
 
         <SelectState className="" />
