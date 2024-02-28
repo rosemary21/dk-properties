@@ -39,6 +39,7 @@ export default function AuthService() {
   const [success, setSuccess] = useState(false);
   const router = useRouter();
   const apiKey = getToken();
+  console.log("");
 
   const [opened, { open, close }] = useDisclosure(false);
 
