@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import {
   Button,
@@ -16,12 +17,13 @@ import { object, ref, string } from "yup";
 import { useFormik } from "formik";
 import AuthService from "@/services/auth";
 import errorStyle from "@/utils/ErrorStyle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Error from "@/modals/Error";
 import { CssLoader } from "@/utils/Loader";
+import { getUserName } from "@/utils/Links";
 
 export default function UpdateUser() {
-  const { close, error, handleUpdateUser, isLoading, opened } = AuthService();
+  const { handleUpdateUser, isLoading } = AuthService();
 
   const requirements = [
     { re: /[0-9]/, label: "Includes number" },
@@ -82,33 +84,40 @@ export default function UpdateUser() {
       .matches(/[$&+,:;=?@#|'<>.^*()%!-]/, "Password requires a symbol"),
   });
 
-  const { errors, values, touched, handleChange, handleSubmit, isSubmitting } =
-    useFormik({
-      initialValues: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        userType: "property",
-        userName: "",
-        password: "",
-      },
-      validationSchema,
-      onSubmit: async (
-        { firstName, lastName, email, userName, userType, password },
-        { resetForm, setSubmitting }
-      ) => {
-        await handleUpdateUser({
-          firstName,
-          lastName,
-          email,
-          userName,
-          userType,
-          password,
-        });
-        resetForm();
-        setSubmitting(false);
-      },
-    });
+  const {
+    errors,
+    values,
+    touched,
+    handleChange,
+    handleSubmit,
+    isSubmitting,
+    setFieldValue,
+  } = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      userType: "property",
+      userName: "",
+      password: "",
+    },
+    validationSchema,
+    onSubmit: async (
+      { firstName, lastName, email, userName, userType, password },
+      { resetForm, setSubmitting }
+    ) => {
+      await handleUpdateUser({
+        firstName,
+        lastName,
+        email,
+        userName,
+        userType,
+        password,
+      });
+      resetForm();
+      setSubmitting(false);
+    },
+  });
 
   const checks = requirements.map((requirement, index) => (
     <PasswordRequirement
@@ -120,6 +129,11 @@ export default function UpdateUser() {
 
   const strength = getStrength(values.password);
   const color = strength === 50 ? "teal" : strength > 50 ? "yellow" : "red";
+
+  useEffect(() => { 
+    const userName = getUserName();
+    setFieldValue("userName", userName, true);
+  }, []);
 
   return (
     <div className="my-5 w-full">
@@ -243,14 +257,6 @@ export default function UpdateUser() {
           Update
         </Button>
       </form>
-
-      {error && (
-        <Error
-          closeErrorModal={close}
-          isErrorModalOpened={opened}
-          message={error}
-        />
-      )}
 
       {isLoading && <CssLoader />}
     </div>

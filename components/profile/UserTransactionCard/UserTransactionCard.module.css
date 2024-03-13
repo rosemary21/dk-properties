@@ -1,156 +1,193 @@
-.userCard-container {
-    width: min(800px, 100%);
-    margin: 0 auto;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #D5D5D5;
-    padding-bottom: 0.4rem;
-    cursor: pointer;
+.userCardContainer {
+  width: min(800px, 100%);
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #92929299;
+  cursor: pointer;
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 20px;
 }
 
-
-.userCard-container div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.imageContainer {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.2rem;
 }
 
-.userCard-container div h2 {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    color: #000000;
+.imageContainer img {
+  width: 200px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-.userCard-container div p {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    color: #888888;
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.detailsContainer div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detailsContainer div h3 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  color: #000000;
+}
+
+.detailsContainer div p {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #888888;
+}
+
+.status {
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1rem;
 }
 
 .userProfile-signout {
-    --width: 90px;
-    width: var(--width);
-    border: 0;
-    outline: 0;
-    background-color: var(--pink);
-    margin-left: calc((100% - var(--width)) / 2);
-    margin-top: 5rem;
-    text-align: center;
-    font-family: "Poppins";
-    font-style: normal;
-    font-family: 15px;
-    color: white;
-    padding: 8px 0;
+  --width: 90px;
+  width: var(--width);
+  border: 0;
+  outline: 0;
+  background-color: var(--pink);
+  margin-left: calc((100% - var(--width)) / 2);
+  margin-top: 5rem;
+  text-align: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-family: 15px;
+  color: white;
+  padding: 8px 0;
 }
 
 .tabs_container {
-    width: min(500px, 100%);
-    margin: 0 auto;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+  width: min(500px, 100%);
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .tabs_btns {
-    width: 100%;
-    border-radius: 10px;
-    background-color: #eff3f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 10px;
-    margin-bottom: 10px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #eff3f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .tabs_btn {
-    width: 100%;
-    background-color: #dadada;
-    border-radius: 6px;
-    text-align: center;
-    border: 0;
-    outline: 0;
-    font-family: "Poppins";
-    font-style: normal;
-    font-family: 15px;
-    padding: 5px 0;
+  width: 100%;
+  background-color: #dadada;
+  border-radius: 6px;
+  text-align: center;
+  border: 0;
+  outline: 0;
+  font-family: "Poppins";
+  font-style: normal;
+  font-family: 15px;
+  padding: 5px 0;
 }
 
 .tabs_btn.active {
-    width: 100%;
-    background-color: var(--pink);
-    color: var(--white);
+  width: 100%;
+  background-color: var(--pink);
+  color: var(--white);
 }
-
 
 /* User upload */
 #uploadTransactionForm {
-    width: min(100%, 430px);
-    margin: 0 auto;
+  width: min(100%, 430px);
+  margin: 0 auto;
 }
 
 .upload_transaction_input_group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 10px 0;
 }
 
 .upload_transaction_input_group label {
-    font-style: normal;
-    font-size: 15px;
-    font-family: "Inter";
+  font-style: normal;
+  font-size: 15px;
+  font-family: "Inter";
 }
 
 .upload_transaction_input_group input:not(.uploadTransactionButton),
 .upload_transaction_input_group select {
-    outline: 0;
-    background-color: transparent;
-    border: 1px solid rgba(128, 128, 128, 0.453);
-    width: 100%;
-    height: 35px;
-    border-radius: 5px;
-    padding-left: 10px;
-    font-style: normal;
-    font-size: 15px;
-    font-family: "Inter";
+  outline: 0;
+  background-color: transparent;
+  border: 1px solid rgba(128, 128, 128, 0.453);
+  width: 100%;
+  height: 35px;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-style: normal;
+  font-size: 15px;
+  font-family: "Inter";
 }
 
 .uploadTransactionButton {
-    width: 100%;
-    height: 35px;
-    text-align: center;
-    font-style: normal;
-    font-size: 15px;
-    font-family: "Inter";
-    color: var(--white);
-    background-color: var(--pink);
-    outline: 0;
-    border: 0;
+  width: 100%;
+  height: 35px;
+  text-align: center;
+  font-style: normal;
+  font-size: 15px;
+  font-family: "Inter";
+  color: var(--white);
+  background-color: var(--pink);
+  outline: 0;
+  border: 0;
 }
 
 .user_get_files_button {
-    width: 100%;
-    height: 35px;
-    text-align: center;
-    font-style: normal;
-    font-size: 15px;
-    font-family: "Inter";
-    color: var(--pink);
-    background-color: var(--white);
-    outline: 0;
-    border: 1px solid rgba(128, 128, 128, 0.453);
+  width: 100%;
+  height: 35px;
+  text-align: center;
+  font-style: normal;
+  font-size: 15px;
+  font-family: "Inter";
+  color: var(--pink);
+  background-color: var(--white);
+  outline: 0;
+  border: 1px solid rgba(128, 128, 128, 0.453);
 }
 
-
 @media only screen and (max-width: 576px) {
-    .tabs_btn {
-        font-family: 12px;
-        padding: 5px 0;
-    }
+  .tabs_btn {
+    font-family: 12px;
+    padding: 5px 0;
+  }
+
+  .imageContainer img {
+    width: 150px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
 }

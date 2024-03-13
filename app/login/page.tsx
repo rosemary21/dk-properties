@@ -8,6 +8,7 @@ import SignIn from "@/components/login/SignIn/SignIn";
 import Register from "@/components/login/Register/Register";
 import Footer from "@/components/Footer/Footer";
 
+
 export default function Login() {
   return (
     <div>

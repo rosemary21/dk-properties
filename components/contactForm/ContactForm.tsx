@@ -2,15 +2,25 @@
 import ContactUsService from "@/services/contactUs";
 import { TextInput, Textarea, Checkbox, Button } from "@mantine/core";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { CSSProperties, useState } from "react";
 import { object, string } from "yup";
 import classes from "./ContactForm.module.css";
 import Error from "@/modals/Error";
-import Notification from "@/utils/notification";
+import { openErrorNotification } from "@/utils/openNotification";
 
 export default function ContactForm() {
   const [checked, setChecked] = useState(false);
-  const { contactUsApi, error, success, close, opened } = ContactUsService();
+  const [persist, setPersist] = useState(false);
+  const { contactUsApi } = ContactUsService();
+
+  const errStyle: CSSProperties = {
+    width: "100%",
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    color: "#e80e0f",
+    fontSize: "12px",
+  };
 
   const validationSchema = object().shape({
     firstName: string().required("This field id required"),
@@ -48,6 +58,10 @@ export default function ContactForm() {
           setSubmitting(false);
           setChecked(false);
         } else {
+          openErrorNotification(
+            "You must agree to our friendly privacy policy"
+          );
+          setPersist(true);
           return;
         }
       },
@@ -81,12 +95,9 @@ export default function ContactForm() {
               label="First name"
               size="md"
               withAsterisk
+              className="text-left"
+              error={<p style={errStyle}>{errors.firstName}</p>}
             />
-            {errors.firstName && touched.firstName && (
-              <p className="text-left text-primary text-[11px]">
-                {errors.firstName}
-              </p>
-            )}
           </div>
           <div
             className="w-full flex flex-col gap-1"
@@ -95,19 +106,16 @@ export default function ContactForm() {
             data-aos-delay="600"
           >
             <TextInput
-              placeholder="First Name"
+              placeholder="Last Name"
               name="lastName"
               value={values.lastName}
               onChange={handleChange}
               label="Last name"
               size="md"
               withAsterisk
+              className="text-left"
+              error={<p style={errStyle}>{errors.lastName}</p>}
             />
-            {errors.firstName && touched.firstName && (
-              <p className="text-left text-primary text-[11px]">
-                {errors.firstName}
-              </p>
-            )}
           </div>
         </div>
 
@@ -125,13 +133,9 @@ export default function ContactForm() {
             label="Email"
             size="md"
             withAsterisk
-            className="mt-4"
+            className="mt-4 text-left"
+            error={<p style={errStyle}>{errors.emailAddress}</p>}
           />
-          {errors.emailAddress && touched.emailAddress && (
-            <p className="text-left text-primary text-[11px]">
-              {errors.emailAddress}
-            </p>
-          )}
         </div>
 
         <div
@@ -147,14 +151,9 @@ export default function ContactForm() {
             onChange={handleChange}
             label="Phone number"
             size="md"
-            withAsterisk
-            className="mt-4"
+            className="mt-4 text-left"
+            error={<p style={errStyle}>{errors.phoneNumber}</p>}
           />
-          {errors.phoneNumber && touched.phoneNumber && (
-            <p className="text-left text-primary text-[11px]">
-              {errors.phoneNumber}
-            </p>
-          )}
         </div>
 
         <div
@@ -171,28 +170,27 @@ export default function ContactForm() {
             label="Message"
             size="md"
             withAsterisk
-            className="mt-4"
+            className="mt-4 text-left"
+            error={<p style={errStyle}>{errors.message}</p>}
           />
-          {errors.message && touched.message && (
-            <p className="text-left text-primary text-[11px]">
-              {errors.message}
-            </p>
-          )}
         </div>
 
-        <div
-          className="contact-us-check-group"
-          data-aos="fade-left"
-          data-aos-duration="1000"
-          data-aos-delay="1200"
-        >
+        <div className="contact-us-check-group">
           <Checkbox
             label="You agree to our friendly privacy policy."
             title="This field must be checked before submitting the form"
             checked={checked}
-            onChange={(event) => setChecked(event.currentTarget.checked)}
+            onChange={(event) => {
+              setChecked(event.currentTarget.checked);
+              if (persist) {
+                setPersist(false);
+              }
+              return;
+            }}
             size="md"
-            className="mt-5"
+            className={
+              persist ? "mt-5 text-[green] animate-pulse" : "mt-5 text-black"
+            }
           />
         </div>
 
@@ -204,15 +202,6 @@ export default function ContactForm() {
           Send message
         </button>
       </form>
-
-      {error && (
-        <Error
-          closeErrorModal={close}
-          isErrorModalOpened={opened}
-          message={error}
-        />
-      )}
-      {success && <Notification message="Message was sent successfully" />}
     </div>
   );
 }

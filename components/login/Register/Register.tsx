@@ -19,11 +19,9 @@ import errorStyle from "@/utils/ErrorStyle";
 import { useState } from "react";
 import Error from "@/modals/Error";
 import { CssLoader } from "@/utils/Loader";
-import Notification from "@/utils/notification";
 
 export default function Register() {
-  const { close, error, handleSignUp, isLoading, opened, success } =
-    AuthService();
+  const { handleSignUp, isLoading } = AuthService();
 
   const requirements = [
     { re: /[0-9]/, label: "Includes number" },
@@ -299,26 +297,15 @@ export default function Register() {
         <Button
           type="submit"
           color="#E80E0F"
-          className="w-full mt-8"
+          className={`w-full mt-8 ${classes.btn_primary}`}
           size="lg"
           disabled={isSubmitting}
-          data-aos="fade-right"
-          data-aos-delay="1800"
         >
           Register
         </Button>
       </form>
 
-      {error && (
-        <Error
-          closeErrorModal={close}
-          isErrorModalOpened={opened}
-          message={error}
-        />
-      )}
-
       {isLoading && <CssLoader />}
-      {success && <Notification message="Registered Successfullly" />}
     </Tabs.Panel>
   );
 }

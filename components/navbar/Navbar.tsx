@@ -78,6 +78,19 @@ export default function Navbar() {
           size="sm"
         >
           {items}
+          <Link
+            href={userName ? `/profile/${userName}` : "/login"}
+            className={
+              pathname === "/login"
+                ? "text-primary cursor-pointer hover:text-primary transition-all sm:hidden flex pl-[12px] text-[14px]"
+                : "text-black cursor-pointer hover:text-primary transition-all sm:hidden flex pl-[12px] text-[14px]"
+            }
+            onClick={() => {
+              setActive("");
+            }}
+          >
+            {userName ? "Profile" : "Login"}
+          </Link>
         </Drawer>
       </header>
     </div>

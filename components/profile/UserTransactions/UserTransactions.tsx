@@ -1,32 +1,33 @@
 "use client";
-import { TransactionListProps } from "@/types";
 import { useState } from "react";
 import { Grid } from "@mantine/core";
 import UserTransactionCard from "../UserTransactionCard/UserTransactionCard";
 import { useQuery } from "@tanstack/react-query";
 import TransactionService from "@/services/Transaction";
+import { CssLoader } from "@/utils/Loader";
 
 export default function UserTransactions() {
-  const [transactions, setTransactions] = useState<TransactionListProps[]>([]);
   const [pageNo, setPageNo] = useState(0);
   const pageSize = 10;
   const { getUserTransactions } = TransactionService();
 
-  const {} = useQuery({
+  const {data, isLoading} = useQuery({
     queryFn: () => getUserTransactions(pageNo, pageSize),
     queryKey: ["getUserTransactions", { pageNo }],
   });
+
+  
   
   return (
     <div className="my-5 w-full">
-      {transactions.length === 0 ? (
-        <h4 className="text-center">No Transactions yet</h4>
+      {data?.length === 0 ? (
+        <h4 className="text-center text-[#888]">You have no transactions yet</h4>
       ) : (
         <div>
           <h4 className="text-center">All Transactions</h4>
           <Grid className="my-6">
-            {transactions &&
-              transactions.map((transaction) => (
+            {data &&
+              data.map((transaction) => (
                 <Grid.Col
                   span={{ base: 12, md: 6, lg: 3 }}
                   key={transaction.id}
@@ -58,6 +59,8 @@ export default function UserTransactions() {
           {/* {error && <ErrorModal errorMsg={error} closeModal={setError} />} */}
         </div>
       )}
+
+      {isLoading && <CssLoader />}
     </div>
   );
 }

@@ -3,7 +3,10 @@
 import { dkss, getToken } from "@/utils/Links";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useDisclosure } from "@mantine/hooks";
+import {
+  openErrorNotification,
+  openSuccessNotification,
+} from "@/utils/openNotification";
 
 type Props = {
   emailAddress: string;
@@ -11,18 +14,9 @@ type Props = {
 
 export default function NewsLetterService() {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const token = getToken();
   const router = useRouter();
-
-  const [
-    isSuccessModalOpened,
-    { open: openSuccessModal, close: closeSuccessModal },
-  ] = useDisclosure(false);
-  const [isErrorModalOpened, { open: openErrorModal, close: closeErrorModal }] =
-    useDisclosure(false);
 
   async function handleJoinNewsletter({ emailAddress }: Props) {
     setIsLoading(true);
@@ -40,37 +34,28 @@ export default function NewsLetterService() {
           .then((result) => {
             if (result.responseDto.code === dkss) {
               setIsLoading(false);
-              setError("");
-              openSuccessModal();
+              openSuccessNotification(
+                "Thank you for subscribing to our newsletter. We’re happy to always inform you about our latest activities"
+              );
             } else {
               setIsLoading(false);
-              setError(result.responseDto.message);
-              openErrorModal();
+              openErrorNotification(result.responseDto.message);
+              return;
             }
           });
       } catch (error: any) {
         setIsLoading(false);
-        setError(error.message);
-        openErrorModal();
-      } finally {
-        setIsLoading(false);
-        setError("");
-        setIsSuccess(false);
+        openErrorNotification(error.message);
       }
     } else {
       setIsLoading(false);
+      openErrorNotification("Login and try again...");
       router.push("/login");
     }
   }
 
   return {
     isLoading,
-    error,
-    isSuccess,
     handleJoinNewsletter,
-    isSuccessModalOpened,
-    closeSuccessModal,
-    isErrorModalOpened,
-    closeErrorModal,
   };
 }

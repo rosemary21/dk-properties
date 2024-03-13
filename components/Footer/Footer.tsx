@@ -11,16 +11,7 @@ import { CssLoader } from "@/utils/Loader";
 import Success from "@/modals/Success";
 
 export default function Footer() {
-  const {
-    handleJoinNewsletter,
-    error,
-    isLoading,
-    isSuccess,
-    isSuccessModalOpened,
-    isErrorModalOpened,
-    closeErrorModal,
-    closeSuccessModal,
-  } = NewsLetterService();
+  const { handleJoinNewsletter, isLoading } = NewsLetterService();
 
   const validationSchema = object().shape({
     emailAddress: string()
@@ -102,23 +93,7 @@ export default function Footer() {
         </div>
       </footer>
 
-      {isErrorModalOpened && (
-        <Error
-          closeErrorModal={closeErrorModal}
-          isErrorModalOpened={isErrorModalOpened}
-          message={error}
-        />
-      )}
-
       {isLoading && <CssLoader />}
-      {isSuccess && (
-        <Success
-          closeSuccessModal={closeSuccessModal}
-          isSuccessModalOpened={isSuccessModalOpened}
-          message="Thank you for subscribing to our newsletter. We’re happy to always inform you about our latest activities"
-          status="Horray!!!!!"
-        />
-      )}
     </div>
   );
 }

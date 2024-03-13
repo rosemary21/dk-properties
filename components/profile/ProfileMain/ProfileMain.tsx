@@ -14,7 +14,7 @@ export default function ProfileMain({ user }: { user: string }) {
   return (
     <div className="mt-[12vh] md:w-[500px] sm:w-full mx-auto my-12">
       <div className="text-center my-4 font-medium capitalize text-lg">
-        Welcome {user}
+        Welcome {user?.split("%40")[0]}
       </div>
       <Tabs defaultValue="transaction">
         <ProfileTabList />

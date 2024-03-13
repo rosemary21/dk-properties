@@ -1,14 +1,11 @@
 import { AllTransactionsProps, UploadTransactionResponseProps } from "@/types";
-import { dker, getToken, getUserName } from "@/utils/Links";
-import openNotification from "@/utils/openNotification";
-import { useRouter } from "next/navigation";
+import { dker, getToken } from "@/utils/Links";
 import {
-  Dispatch,
-  FormEvent,
-  MutableRefObject,
-  SetStateAction,
-  useState,
-} from "react";
+  openErrorNotification,
+  openSuccessNotification,
+} from "@/utils/openNotification";
+import { useRouter } from "next/navigation";
+import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
 interface UploadProps {
   e: FormEvent<HTMLFormElement>;
@@ -33,9 +30,7 @@ interface UploadProps {
 
 export default function TransactionService() {
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
   const apiKey = getToken();
-  const userName = getUserName();
   const router = useRouter();
 
   const handleUploadTransaction = async ({
@@ -52,7 +47,10 @@ export default function TransactionService() {
     headers.append("apiKey", apiKey);
 
     const formdata = new FormData();
-    if (!file) return;
+    if (!file) {
+      openErrorNotification("Select a valid file");
+      return;
+    }
     formdata.append("files", file[0], file[0].name);
     formdata.append("description", uploadStates.description);
     formdata.append("amount", uploadStates.amount);
@@ -67,13 +65,12 @@ export default function TransactionService() {
       const result: UploadTransactionResponseProps = await response.json();
       if (result.responseDto.code == dker) {
         setIsLoading(false);
-        setErrorMessage(result.responseDto.message);
+        openErrorNotification(result.responseDto.message);
         return;
       } else {
-        openNotification({
-          message:
-            uploadStates.username + " your " + result.responseDto.message,
-        });
+        openSuccessNotification(
+          uploadStates.username + " your " + result.responseDto.message
+        );
         setFile(null);
         setImageSrc("");
         setUploadStates((prev) => ({
@@ -87,7 +84,7 @@ export default function TransactionService() {
       }
     } catch (error: any) {
       setIsLoading(false);
-      setErrorMessage(error.message);
+      openErrorNotification(error.message);
     }
   };
 
@@ -108,12 +105,14 @@ export default function TransactionService() {
       const response = await fetch(url, options);
       const result: AllTransactionsProps = await response.json();
       if (result.responseDto.code == dker) {
-        setErrorMessage(result.responseDto.message);
+        openErrorNotification(result.responseDto.message);
+        return;
       } else {
+        // openSuccessNotification(result.responseDto.message);
         return result.transactionList;
       }
     } catch (error: any) {
-      setErrorMessage(error.message);
+      openErrorNotification(error.message);
     }
   };
 
@@ -125,7 +124,7 @@ export default function TransactionService() {
       router.push("/login");
     }
     try {
-      setPdfLink(prodCode)
+      setPdfLink(prodCode);
     } catch (error) {
       return error;
     }
@@ -133,7 +132,6 @@ export default function TransactionService() {
 
   return {
     isLoading,
-    errorMessage,
     handleUploadTransaction,
     getUserTransactions,
     checkout,

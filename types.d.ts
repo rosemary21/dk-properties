@@ -59,25 +59,40 @@ export type UploadTransactionResponseProps = {
   transaction: null;
 };
 
-export interface TransactionListProps {
+// export interface TransactionListProps {
+//   currency: string;
+//   userName: null;
+//   descriptionCodeList: null;
+//   reference: string;
+//   id: number;
+//   amount: string;
+//   multipartFile: null;
+//   imageUrl: string;
+//   transactionStatus: string;
+//   descriptionCode: string;
+//   productDescriptionId: null;
+//   transactionId: null;
+//   reasonForRejection: string;
+// }
+export interface TransactionsListProps {
   currency: string;
-  userName: null;
-  descriptionCodeList: null;
-  reference: string;
   id: number;
   amount: string;
-  multipartFile: null;
-  imageUrl: string;
   transactionStatus: string;
   descriptionCode: string;
-  productDescriptionId: null;
-  transactionId: null;
-  reasonForRejection: string;
+  imageList: {
+    id: number;
+    version: number;
+    delFlag: string;
+    createdOn: string;
+    modifiedOn: string;
+    imageUrl: string;
+  }[];
 }
 
 export interface AllTransactionsProps {
   responseDto: ResponseDtoProps;
-  transactionList: TransactionListProps[];
+  transactionList: TransactionsListProps[];
   transactionDto: null;
   transaction: null;
 }

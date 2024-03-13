@@ -1,20 +1,37 @@
-import { TransactionListProps } from "@/types";
-import "./UserTransactionCard.module.css";
+"use client";
+
+import { TransactionsListProps } from "@/types";
+import classes from "./UserTransactionCard.module.css";
 import Image from "next/image";
 
 interface Props {
-  transaction: TransactionListProps;
+  transaction: TransactionsListProps;
 }
 
+// [
+//   {
+//     currency: "",
+//     id: 6,
+//     amount: "780000.00",
+//     transactionStatus: "Pending",
+//     descriptionCode: "Jones Painting",
+//     imageList: [
+//       {
+//         id: 5,
+//         version: 0,
+//         delFlag: "N",
+//         createdOn: null,
+//         modifiedOn: null,
+//         imageUrl:
+//           "https://res.cloudinary.com/dsdhgipbp/image/upload/v1710269089/ibzuyjjsy481qyy7sd5g.jpg",
+//       },
+//     ],
+//   },
+// ];
+
 const UserTransactionCard = ({ transaction }: Props) => {
-  const {
-    userName,
-    amount,
-    imageUrl,
-    transactionId,
-    transactionStatus,
-    reasonForRejection,
-  } = transaction;
+  const { amount, transactionStatus, currency, descriptionCode, imageList } =
+    transaction;
 
   const statusIcon = () => {
     if (transactionStatus.toLowerCase() == "pending")
@@ -41,49 +58,52 @@ const UserTransactionCard = ({ transaction }: Props) => {
   };
 
   return (
-    <div className="receipt_container">
-      <div className="receipt_up">
-        <Image src={imageUrl} alt="apartment" />
-        <div className="property_details">
+    <div className={classes.userCardContainer}>
+      <div className={classes.imageContainer}>
+        <Image
+          src={imageList[0].imageUrl}
+          alt="apartment"
+          width={200}
+          height={100}
+        />
+        <div className={classes.detailsContainer}>
           <div>
-            <p className="receipt_property_title">Property Name</p>
-            <h3 className="receipt_property_name" style={{ fontSize: "13px" }}>
-              3 Bedroom Apartment
-            </h3>
+            <p>Property Name</p>
+            <h3>{descriptionCode}</h3>
           </div>
 
           <div>
-            <p className="receipt_property_title">Amount</p>
-            <h3 className="receipt_property_name" style={{ fontSize: "13px" }}>
-              {amount}
+            <p>Amount</p>
+            <h3>
+              {currency} {amount}
             </h3>
           </div>
         </div>
       </div>
 
       <div className="receipt_down">
-        <div className="receipt_customer_details">
+        {/* <div className="receipt_customer_details">
           <div>
             <p className="receipt_customer_name" style={{ fontSize: "13px" }}>
-              {userName}
+              userName
             </p>
             <p className="receipt_customer_phone" style={{ fontSize: "10px" }}>
-              {transactionId}
+              transactionId
             </p>
           </div>
-        </div>
-        <div className="receipt_status_completed" style={receiptStatusStyle}>
+        </div> */}
+        <div className={classes.status} style={receiptStatusStyle}>
           <i className={statusIcon()}></i>
           {transactionStatus}
         </div>
       </div>
 
-      <p
+      {/* <p
         className="rejection_reason"
         style={{ display: reasonForRejection !== "" ? "block" : "none" }}
       >
         {reasonForRejection}
-      </p>
+      </p> */}
     </div>
   );
 };

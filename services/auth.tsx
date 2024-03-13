@@ -10,8 +10,10 @@ import {
 import { useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { useDisclosure } from "@mantine/hooks";
-import openNotification from "@/utils/openNotification";
+import {
+  openErrorNotification,
+  openSuccessNotification,
+} from "@/utils/openNotification";
 
 type LogInProps = {
   userName: string;
@@ -35,16 +37,12 @@ type UpdateUserProps = Pick<
 
 export default function AuthService() {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
   const router = useRouter();
   const apiKey = getToken();
-  console.log("");
-
-  const [opened, { open, close }] = useDisclosure(false);
 
   async function handleLogIn({ userName, password }: LogInProps) {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/login/customer`;
+
     setIsLoading(true);
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -55,18 +53,18 @@ export default function AuthService() {
       const data = await response.json();
       if (data.responseDto.code == dker) {
         setIsLoading(false);
-        setError(data.responseDto.message);
-        open();
+        openErrorNotification(data.responseDto.message);
         return;
       }
       setIsLoading(false);
+      openSuccessNotification(data?.responseDto?.message);
       Cookies.set(userToken, data.token);
       Cookies.set(userEmail, data.emailAddress);
       const user = getUserName();
       router.push(`/profile/${user}`);
     } catch (error: any) {
       setIsLoading(false);
-      setError(error.message);
+      openErrorNotification(error.message);
     }
   }
 
@@ -101,23 +99,16 @@ export default function AuthService() {
       const result = await response.json();
       if (result.responseDto.code === dker) {
         setIsLoading(false);
-        setError(result.responseDto.message);
-        open();
+        openErrorNotification(result.responseDto.message);
+        return;
       }
       setIsLoading(false);
-      setSuccess(true);
-      // setTimeout(() => {
-      //   if (typeof window !== "undefined" && window.location) {
-      //     window.location.reload();
-      //   }
-      // }, 3000);
+      openSuccessNotification(result.responseDto.message);
     } catch (error: any) {
       setIsLoading(false);
-      setError(error.message);
-      open();
+      openErrorNotification(error.message);
     } finally {
       setIsLoading(false);
-      setError("");
     }
   }
 
@@ -151,19 +142,17 @@ export default function AuthService() {
       const result = await response.json();
       if (result.responseDto.code === dker) {
         setIsLoading(false);
-        setError(result.responseDto.message);
-        open();
+        openSuccessNotification(result.responseDto.message);
+        return;
       } else {
         setIsLoading(false);
-        openNotification({ message: result.responseDto.message });
+        openErrorNotification(result.responseDto.message);
       }
     } catch (error: any) {
       setIsLoading(false);
-      setError(error.message);
-      open();
+      openErrorNotification(error.message);
     } finally {
       setIsLoading(false);
-      setError("");
     }
   }
 
@@ -178,9 +167,10 @@ export default function AuthService() {
       const result = await response.json();
       if (result.resp.code == dker) {
         setIsLoading(false);
-        setError(result.res.code.message);
+        openErrorNotification(result.res.code.message);
         return;
       } else {
+        openSuccessNotification(result?.resp?.message);
         Cookies.remove(userEmail);
         Cookies.remove(userToken);
         localStorage.clear();
@@ -189,21 +179,16 @@ export default function AuthService() {
       }
     } catch (error: any) {
       setIsLoading(false);
-      setError(error.message);
+      openErrorNotification(error.message);
     } finally {
       setIsLoading(false);
-      setError("");
     }
   }
 
   return {
     isLoading,
-    error,
     handleLogIn,
-    opened,
-    close,
     handleSignUp,
-    success,
     logOutUser,
     handleUpdateUser,
   };

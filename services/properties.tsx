@@ -1,8 +1,7 @@
 import { GetPropertiesResponseProps, PropertyResponseProps } from "@/types";
 import { dker } from "@/utils/Links";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useDisclosure } from "@mantine/hooks";
+import { openErrorNotification } from "@/utils/openNotification";
 
 type GetPropertiesProps = {
   location: string | null;
@@ -13,9 +12,7 @@ type GetPropertiesProps = {
 };
 
 export default function PropertiesServices() {
-  const [error, setError] = useState("");
   const router = useRouter();
-  const [opened, { open, close }] = useDisclosure(false);
 
   async function getProperties({
     location,
@@ -43,8 +40,7 @@ export default function PropertiesServices() {
       const response = await fetch(url, options);
       const result: GetPropertiesResponseProps = await response.json();
       if (result.responseDto.code == dker) {
-        setError(result.responseDto.message);
-        open();
+        openErrorNotification(result.responseDto.message);
         return;
       }
       localStorage.setItem(
@@ -53,8 +49,7 @@ export default function PropertiesServices() {
       );
       return result.productDescriptionDtoList;
     } catch (error: any) {
-      setError(error.message + ", try to refresh your browser");
-      open();
+      openErrorNotification(error.message + ", try to refresh your browser");
     }
   }
 
@@ -68,5 +63,5 @@ export default function PropertiesServices() {
     router.push("/details");
   }
 
-  return { error, getProperties, getAProperty, opened, close };
+  return { getProperties, getAProperty };
 }

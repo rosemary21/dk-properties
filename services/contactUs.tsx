@@ -1,10 +1,12 @@
 "use client";
-import { useDisclosure } from "@mantine/hooks";
 import { ResponseDtoProps } from "@/types";
 import { dker, getToken } from "@/utils/Links";
 import { useRouter } from "next/navigation";
+import {
+  openErrorNotification,
+  openSuccessNotification,
+} from "@/utils/openNotification";
 import { useState } from "react";
-import openNotification from "@/utils/openNotification";
 
 type Props = {
   firstName: string;
@@ -15,11 +17,9 @@ type Props = {
 };
 
 export default function ContactUsService() {
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const token = getToken();
   const router = useRouter();
-  const [opened, { open, close }] = useDisclosure(false);
 
   async function contactUsApi({
     emailAddress,
@@ -28,6 +28,7 @@ export default function ContactUsService() {
     message,
     phoneNumber,
   }: Props) {
+    setIsLoading(true);
     if (token) {
       const headers = new Headers();
       headers.append("apiKey", token);
@@ -48,23 +49,23 @@ export default function ContactUsService() {
         const result = await response.json();
         const res = result.responseDto as ResponseDtoProps;
         if (res.code === dker) {
-          setError(res.message);
+          setIsLoading(false);
+          openErrorNotification(res.message);
           return;
         }
-        setSuccess(true);
-        openNotification({ message: "Message was sent successfully" });
+        setIsLoading(false);
+        openSuccessNotification(res.message || "Message was sent successfully");
       } catch (error: any) {
-        setError(error.message);
-        open();
+        setIsLoading(false);
+        openErrorNotification(error.message);
         return;
-      } finally {
-        setSuccess(false);
-        setError("");
-        open();
       }
     } else {
+      setIsLoading(false);
+      openErrorNotification("Login to send a message...");
       router.push("/login");
     }
   }
-  return { error, success, contactUsApi, opened, close };
+  
+  return { contactUsApi, isLoading };
 }

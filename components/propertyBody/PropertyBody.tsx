@@ -21,7 +21,7 @@ interface Props {
 export default function PropertyBody({ propertyType }: Props) {
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 10;
-  const { getProperties, error, close, opened } = PropertiesServices();
+  const { getProperties } = PropertiesServices();
   const location = usePropertyStore((state) => state.state);
   const prices = useCheckBoxStore((state) => state.price);
   const property = propertyType;
@@ -95,13 +95,6 @@ export default function PropertyBody({ propertyType }: Props) {
       </div>
 
       {isLoading && <CssLoader />}
-      {error && (
-        <Error
-          closeErrorModal={close}
-          isErrorModalOpened={opened}
-          message={error}
-        />
-      )}
     </div>
   );
 }

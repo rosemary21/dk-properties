@@ -9,7 +9,7 @@ import Error from "@/modals/Error";
 import { CssLoader } from "@/utils/Loader";
 
 export default function SignIn() {
-  const { error, isLoading, handleLogIn, close, opened } = AuthService();
+  const { isLoading, handleLogIn } = AuthService();
   const validationSchema = object().shape({
     userName: string().required("This field is required"),
     password: string().required("This field is required"),
@@ -84,20 +84,10 @@ export default function SignIn() {
           className={`w-full mt-8 ${classes.btn_primary}`}
           size="lg"
           disabled={isSubmitting}
-          data-aos="fade-right"
-          data-aos-delay="900"
         >
           Sign In
         </Button>
       </form>
-
-      {error && (
-        <Error
-          closeErrorModal={close}
-          isErrorModalOpened={opened}
-          message={error}
-        />
-      )}
 
       {isLoading && <CssLoader />}
     </Tabs.Panel>
